@@ -50,7 +50,7 @@ Mat SW(Mat& bw8u_orig)
 	int strokeRadius;
 
 	bw8u.convertTo(bw32f, CV_32F);  // format conversion for multiplication
-	distanceTransform(bw8u, swt32f, CV_DIST_L2, 5); // distance transform
+	distanceTransform(bw8u, swt32f, cv::DIST_L2, 5); // distance transform
 	minMaxLoc(swt32f, NULL, &max);  // find max
 	strokeRadius = (int)ceil(max);  // half the max stroke width
 	kernel = getStructuringElement(MORPH_RECT, Size(3, 3)); // 3x3 kernel used to select 8-connected neighbors
@@ -78,7 +78,7 @@ int main(int argc, char **argv)
     //Read Image
     cv::Mat ImageIn;
     ImageIn.data = NULL;
-    ImageIn = cv::imread(NameIn, CV_LOAD_IMAGE_GRAYSCALE);
+    ImageIn = cv::imread(NameIn, cv::IMREAD_GRAYSCALE);
 	// Mat halfSWImg = SW(ImageIn);
 	// double sw_max;
     // minMaxLoc(halfSWImg, nullptr, &sw_max);
